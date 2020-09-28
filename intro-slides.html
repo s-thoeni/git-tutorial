@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Git intro</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .column-3 {
+          float: left;
+          width: 33.33%;
+      }
+
+      .row:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# GIT introduction
+
+---
+
+# What is GIT? 
+
+**Version Control System (VCS)** for tracking changes in files
+- Distributed
+
+- Coordinates work between multiple developers
+
+- Who made what changes and when
+
+- Jump back to any point at any time
+
+- Local & remote repos
+
+---
+
+# Repositories (Repo's)
+
+- A repo is a container for a project you want to track with git. e.g WSG https://github.hpe.com/scs/wsg or this slideset https://github.com/s-thoeni/git-tutorial
+
+- Can have many different repos for many different projects on you computer
+
+- Like a project folder which GIT tracks the contents
+
+---
+class: center, middle
+# Commit
+
+![](commit.PNG)
+
+---
+
+# File states (Workflow)
+.row[
+.column-3[
+**Modified**
+- Changed files
+- Not commited
+]
+.column-3[
+**Staged**
+- All changed files that you want to commit
+]
+.column-3[
+**Commited**
+- All files included in the 'snapshot'
+- All files from the staging are will be commited
+- Commited files are 'unmodified' files
+]]
+
+---
+
+# In action
+Please fix the typo in this line of txet and track the change in git.
+
+```
+$ git status                  # shows the modification of the file
+$ git diff                    # shows the excact modification of the file
+$ git add intro-slides.html   # adds the file to the staging area
+$ git commit -m 'fixing typo' # commits the file
+$ git status                  # no more untracked files
+```
+
+We can see the change in our log:
+```
+$ git log --graph --oneline --all
+```
+---
+
+# Reverting changes
+Make some change that doesn't make sense and then revert the change:
+
+```
+$ git commit -m 'some bad commit' # commits the file
+$ git status                      # no more untracked files
+$ git log                         # to find the bad commit
+$ git revert _hash_               # to revert the change
+$ git commit                      # to commit the revert
+```
+
+Interesting observation in the log now:
+```
+$ git log --graph --oneline --all
+```
+
+---
+# Branches & Merging
+The rest of the slides are in a different branch. To view them:
+
+```
+$ git checkout feat/branching-slides
+```
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
