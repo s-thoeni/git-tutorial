@@ -122,12 +122,59 @@ $ git log --graph --oneline --all
 ```
 
 ---
-# Branches & Merging
-The rest of the slides are in a different branch. To view them:
+# Branches
+Branches allow us to have multiple lines of development for our repo. Branches are the single most usefull tool of git. They allow us to develop multiple software versions at the same time (20.09 and 20.10).
+
+Branches also allow us to develop features independent from a release thus enabling true agile development.
+
+You always commit on some branch (e.g. 'master' branch)
+![](branches.PNG)
+
+---
+# Merging
+Merging is the process of joining two development histories together.
+
+Apply all commits from one branch onto the other and incorporate this in a 'merge commit'
+![](merge.PNG)
+
+---
+# In Action
+Create a branch, fix the typo, megre the fix.
 
 ```
-$ git checkout feat/branching-slides
+$ git branch fix-typo                  # creates the branch
+$ git checkout fix-typo                # checkout the branch
+$ git add intro-slides.html            # stage intro-slides
+$ git commit -m 'fixing typo'          # commit the change
+$ git checkout feat/branching-slides   # to revert the change
+$ git merge fix-typo                   # to commit the revert
+``` 
+
+observe the log
 ```
+$ git log --graph --oneline --all
+```
+
+---
+# The one we all hate - Conflicts
+When the same line of code is changed on two branches its impossible to merge the two.
+
+The only method of resolving such a conflict is by manually fixing it.
+
+Merge the branch 'feat/branching-slides' into master. What is causing the conflict? How do we solve it?
+
+---
+# Local/Remote
+Right now we were only working on the local repo. Working with a remote is simple:
+
+```
+$ git pull      # pulls the changes from remote and merges if it has to
+$ git push      # pushes local changes to remote
+```
+
+---
+# Q&A
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
